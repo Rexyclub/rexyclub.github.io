@@ -159,15 +159,16 @@ function enVoices(){try{return speechSynthesis.getVoices().filter(x=>/^en/i.test
 function pickVoice(){
  const vs=enVoices();
  const id=v=>v.name+" "+v.voiceURI;
- const fem=/female|zira|susan|karen|samantha|victoria|tessa|moira|fiona|serena|allison|\bava\b|kate|hazel|catherine|linda|heather|jenny|aria|sonia|libby|emma|joanna|nicky|google us english|-(sfg|iob|iog|tpc|tpf|ald)\b/i;
- const pref=[/(^|[^a-z])male/i,/guy/i,/david/i,/\bmark\b/i,/daniel/i,/aaron/i,/ryan/i,/\balex\b/i,/george/i,/gordon/i,/fred/i,/james/i,/rishi/i,/arthur/i,/oliver/i,/thomas/i,/-(iol|iom|tpd|rjs)\b/i];
+ const mal=/(^|[^a-z])male|david|\bmark\b|\bguy\b|daniel|\balex\b|\bfred\b|george|james|ryan|aaron|gordon|rishi|eddy|reed|arthur|oliver|thomas|roger|brian|christopher|davis|\beric\b|-(iol|iom|tpd|rjs)\b/i;
+ const isF=v=>/female/i.test(id(v))||!mal.test(id(v));
+ const pref=[/samantha/i,/ava\b/i,/jenny/i,/aria/i,/zira/i,/serena/i,/karen/i,/moira/i,/tessa/i,/allison/i,/susan/i,/hazel/i,/libby/i,/sonia/i,/google us english/i,/female/i,/-(sfg|iob|iog|tpc|tpf|ald)\b/i];
  const rk=v=>/^en[-_]US/i.test(v.lang)?0:/^en[-_]GB/i.test(v.lang)?1:2;
- const ms=vs.filter(v=>!fem.test(id(v))||/(^|[^a-z])male/i.test(id(v))&&!/female/i.test(id(v))).sort((x,y)=>rk(x)-rk(y));
- for(const p of pref){const f=ms.find(v=>p.test(id(v))&&!/female/i.test(id(v)));if(f)return f}
- return null}
+ const fs=vs.filter(isF).sort((x,y)=>rk(x)-rk(y));
+ for(const p of pref){const f=fs.find(v=>p.test(id(v)));if(f)return f}
+ return fs[0]||null}
 function mv(){if(!VC)VC=pickVoice();return VC}
 try{speechSynthesis.addEventListener("voiceschanged",()=>{VC=pickVoice()})}catch(e){}
-function sp(t,r){try{const u=new SpeechSynthesisUtterance(t),v=mv();u.lang="en-US";u.rate=r||.85;if(v){u.voice=v;u.lang=v.lang;u.pitch=.85}else{const vs=enVoices(),d=vs.find(x=>/^en[-_]US/i.test(x.lang))||vs[0];if(d)u.voice=d;u.pitch=.4}speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
+function sp(t,r){try{const u=new SpeechSynthesisUtterance(t),v=mv();u.lang="en-US";u.rate=r||.85;u.pitch=1.1;if(v){u.voice=v;u.lang=v.lang}else{const vs=enVoices(),d=vs.find(x=>/^en[-_]US/i.test(x.lang))||vs[0];if(d)u.voice=d}speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
 function say(r){sp(items[S.i].s.join(" "),r)}
 function spO(k){sp(items[S.i].o[k].replace(/<[^>]+>/g,""))}
 function spL(){sp(S.last.c.replace(/<[^>]+>/g,""))}
