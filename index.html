@@ -107,7 +107,7 @@ function render(){
  sel=-1;const it=items[S.i];let h="";
  if(S.v==="start"){
   const has=S.r.length>0;
-  h=`<div class="top"><div class="brand"><span class="rx" role="img" aria-label="Rexy"></span><span class="bt">EZI PIZI<small>ENGLISH FOR REAL LIFE · REXY CLUB</small></span></div></div><div class="bar"></div><main class="card"><h2>سلام! 🐰💚</h2><p>من Rexy هستم. آیما منو فرستاده تا رفیقت باشم و با هم انگلیسی تمرین کنیم.</p><p class="note">امروز ${items.length} تمرین داریم: گزینه‌ای، نوشتن، نقش‌آفرینی و بلندخوانی. اشتباه کردن آزاده.</p><p class="note">👆 روی هر جمله‌ی انگلیسی که 🔊 داره بزن تا تلفظش رو بشنوی.</p><div class="time">⏱ زمان تقریبی: حدود ۳۵ دقیقه</div><p class="note">۵ دقیقه فرمول‌ها + حدود ۳۰ دقیقه تمرین. عجله نکن، اگه خسته شدی می‌تونی تمرین رو متوقف کنی و دوباره برگردی.</p><label for="nm" class="note">اسمت</label><input id="nm" placeholder="اسمت رو اینجا بنویس" value="${esc(S.n)}" style="direction:rtl;text-align:right" autocomplete="off"><details><summary>مرور سریع فرمول‌های امروز (CAN و فرودگاه)</summary><ul class="en" style="direction:ltr;text-align:left"><li>I can dance. / You can cook. / She can sing a song.</li><li>Can you cook? — Yes, I can. / No, I can’t.</li><li>Where is my pen? / Where can I find a taxi?</li><li>Excuse me. Can you help me, please?</li><li>Where is baggage claim? (where you get your suitcase)</li><li>Where is the restroom? (the toilets)</li><li>Where is the exit? (the way out of the airport)</li></ul></details><details><summary>🔊 صدا مردانه نیست؟ صدا رو انتخاب کن</summary><p class="note">یکی از صدا‌ها رو انتخاب کن و بعد تست کن. صدایی که اسمش مثل David, Daniel, Aaron یا Male هست معمولاً صدای مرده.</p><select id="vs" onchange="setV(this.value)" aria-label="انتخاب صدا"></select><button class="sec" onclick="sp('Hello! I am Rexy.')">🔊 تست صدا</button></details>${has&&S.v==="start"?`<button class="go" onclick="resume()">ادامه از Q${String(S.i+1).padStart(2,"0")}</button><button class="sec" onclick="restart()">شروع دوباره</button>`:`<button class="go" onclick="begin()">بزن بریم</button>`}</main>`;
+  h=`<div class="top"><div class="brand"><span class="rx" role="img" aria-label="Rexy"></span><span class="bt">EZI PIZI<small>ENGLISH FOR REAL LIFE · REXY CLUB</small></span></div></div><div class="bar"></div><main class="card"><h2>سلام! 🐰💚</h2><p>من Rexy هستم. آیما منو فرستاده تا رفیقت باشم و با هم انگلیسی تمرین کنیم.</p><p class="note">امروز ${items.length} تمرین داریم: گزینه‌ای، نوشتن، نقش‌آفرینی و بلندخوانی. اشتباه کردن آزاده.</p><p class="note">👆 روی هر جمله‌ی انگلیسی که 🔊 داره بزن تا تلفظش رو بشنوی.</p><div class="time">⏱ زمان تقریبی: حدود ۳۵ دقیقه</div><p class="note">۵ دقیقه فرمول‌ها + حدود ۳۰ دقیقه تمرین. عجله نکن، اگه خسته شدی می‌تونی تمرین رو متوقف کنی و دوباره برگردی.</p><label for="nm" class="note">اسمت</label><input id="nm" placeholder="اسمت رو اینجا بنویس" value="${esc(S.n)}" style="direction:rtl;text-align:right" autocomplete="off"><details><summary>مرور سریع فرمول‌های امروز (CAN و فرودگاه)</summary><ul class="en" style="direction:ltr;text-align:left"><li>I can dance. / You can cook. / She can sing a song.</li><li>Can you cook? — Yes, I can. / No, I can’t.</li><li>Where is my pen? / Where can I find a taxi?</li><li>Excuse me. Can you help me, please?</li><li>Where is baggage claim? (where you get your suitcase)</li><li>Where is the restroom? (the toilets)</li><li>Where is the exit? (the way out of the airport)</li></ul></details>${has&&S.v==="start"?`<button class="go" onclick="resume()">ادامه از Q${String(S.i+1).padStart(2,"0")}</button><button class="sec" onclick="restart()">شروع دوباره</button>`:`<button class="go" onclick="begin()">بزن بریم</button>`}</main>`;
  }else if(S.v==="ls"){h=lesson()}else if(S.v==="rv"){h=rvw()}else if(S.v==="sl"){h=slw()}else if(S.v==="q"){
   h=hd()+`<main class="card">`;
   if(it.t==="m")h+=`<div class="tag">🎯 گزینه‌ای</div><p class="q">${it.q}</p>`+it.o.map((o,k)=>`<button class="opt" id="o${k}" onclick="pick(${k})"><b class="en">${"AB"[k]}</b><span class="en">${o}</span></button>`).join("")+`<div class="lis"><button class="sec" onclick="spO(0)">🔊 A</button><button class="sec" onclick="spO(1)">🔊 B</button></div><button class="go" id="go" disabled onclick="sendM()">ارسال پاسخ</button>`;
@@ -127,7 +127,7 @@ function render(){
  }
  $.innerHTML=h;
  const i=document.getElementById("inp");if(i){i.focus({preventScroll:true});i.addEventListener("keydown",e=>{if(e.key==="Enter")sendP()})}
- fillVs();window.scrollTo(0,0);
+ window.scrollTo(0,0);
 }
 function begin(){S.n=(document.getElementById("nm").value||"رفیق").trim();S.i=0;S.r=[];S.cd={};S.sk={};S.fr=null;S.v="ls";S.lp=0;save();render()}
 function resume(){S.n=(document.getElementById("nm").value||S.n).trim();S.v=S.rv||"q";save();render()}
@@ -155,26 +155,20 @@ function formula(k){
  if(/ can /.test(k))return F("فاعل + can + فعل ساده");
  return ""}
 let VC=null;
-const vkey=v=>v.name+"|"+v.lang;
-function savedV(){try{return localStorage.getItem("rexy-voice")||""}catch(e){return ""}}
 function enVoices(){try{return speechSynthesis.getVoices().filter(x=>/^en/i.test(x.lang))}catch(e){return []}}
 function pickVoice(){
- const vs=enVoices(),sv=savedV();
- if(sv){const f=vs.find(v=>vkey(v)===sv);if(f)return f}
+ const vs=enVoices();
  const id=v=>v.name+" "+v.voiceURI;
- const fem=/female|zira|susan|karen|samantha|victoria|tessa|moira|fiona|serena|allison|\bava\b|kate|hazel|catherine|linda|heather|jenny|aria|sonia|libby|emma|joanna|nicky|google us english|-(sfg|iob|iog|tpc|tpf|ald)\b/i;
- const mal=/david|\bmark\b|\bguy\b|daniel|\balex\b|\bfred\b|george|james|ryan|aaron|gordon|rishi|eddy|reed|arthur|oliver|thomas|roger|brian|christopher|davis|\beric\b|-(iol|iom|tpd|rjs)\b/i;
- const rk=v=>/^en[-_]US/i.test(v.lang)?0:1;
- const a=vs.filter(v=>/(^|[^a-z])male/i.test(id(v))).sort((x,y)=>rk(x)-rk(y));
- if(a.length)return a[0];
- const b=vs.filter(v=>!fem.test(id(v))&&mal.test(id(v))).sort((x,y)=>rk(x)-rk(y));
- return b[0]||null}
+ const mal=/(^|[^a-z])male|david|\bmark\b|\bguy\b|daniel|\balex\b|\bfred\b|george|james|ryan|aaron|gordon|rishi|eddy|reed|arthur|oliver|thomas|roger|brian|christopher|davis|\beric\b|-(iol|iom|tpd|rjs)\b/i;
+ const isF=v=>/female/i.test(id(v))||!mal.test(id(v));
+ const pref=[/samantha/i,/ava\b/i,/jenny/i,/aria/i,/zira/i,/serena/i,/karen/i,/moira/i,/tessa/i,/allison/i,/susan/i,/hazel/i,/libby/i,/sonia/i,/google us english/i,/female/i,/-(sfg|iob|iog|tpc|tpf|ald)\b/i];
+ const rk=v=>/^en[-_]US/i.test(v.lang)?0:/^en[-_]GB/i.test(v.lang)?1:2;
+ const fs=vs.filter(isF).sort((x,y)=>rk(x)-rk(y));
+ for(const p of pref){const f=fs.find(v=>p.test(id(v)));if(f)return f}
+ return fs[0]||null}
 function mv(){if(!VC)VC=pickVoice();return VC}
-function fillVs(){const e=document.getElementById("vs");if(!e)return;const sv=savedV();
- e.innerHTML='<option value="">خودکار (صدای مرد)</option>'+enVoices().map(v=>`<option value="${esc(vkey(v))}"${vkey(v)===sv?" selected":""}>${esc(v.name)} (${esc(v.lang)})</option>`).join("")}
-function setV(k){try{k?localStorage.setItem("rexy-voice",k):localStorage.removeItem("rexy-voice")}catch(e){}VC=null;sp("Hello! I am Rexy. Where is my suitcase?")}
-try{speechSynthesis.addEventListener("voiceschanged",()=>{VC=pickVoice();fillVs()})}catch(e){}
-function sp(t,r){try{const u=new SpeechSynthesisUtterance(t),v=mv();u.lang="en-US";u.rate=r||.85;if(v){u.voice=v;u.lang=v.lang;u.pitch=.85}else{const vs=enVoices(),d=vs.find(x=>/^en[-_]US/i.test(x.lang))||vs[0];if(d)u.voice=d;u.pitch=.45}speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
+try{speechSynthesis.addEventListener("voiceschanged",()=>{VC=pickVoice()})}catch(e){}
+function sp(t,r){try{const u=new SpeechSynthesisUtterance(t),v=mv();u.lang="en-US";u.rate=r||.85;u.pitch=1.1;if(v){u.voice=v;u.lang=v.lang}else{const vs=enVoices(),d=vs.find(x=>/^en[-_]US/i.test(x.lang))||vs[0];if(d)u.voice=d}speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
 function say(r){sp(items[S.i].s.join(" "),r)}
 function spO(k){sp(items[S.i].o[k].replace(/<[^>]+>/g,""))}
 function spL(){sp(S.last.c.replace(/<[^>]+>/g,""))}
