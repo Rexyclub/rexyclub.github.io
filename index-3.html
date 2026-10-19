@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EASY PEASY · Rexy Club</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap">
+<style>
+:root{--bg:#F7EFE3;--tx:#102C43;--card:#FFFFFF;--ct:#102C43;--ac:#9A6A3A;--bt:#102C43;--bx:#F7EFE3;--ln:rgba(16,44,67,.22);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#102C43;--tx:#F7EFE3;--card:#F7EFE3}}
+:root[data-theme="dark"]{--bg:#102C43;--tx:#F7EFE3;--card:#F7EFE3}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:Vazirmatn,Tahoma,sans-serif;line-height:1.8;font-size:16px}
+#app{max-width:520px;margin:0 auto;padding:20px 16px 40px}
+.en{direction:ltr;unicode-bidi:isolate;text-align:left;display:inline-block}
+.top{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:10px}
+.brand{font-weight:800;font-size:22px;letter-spacing:.02em;line-height:1.2;direction:ltr;text-align:left}
+.brand small{display:block;font-weight:400;font-size:11px;opacity:.75;letter-spacing:.06em}
+.qn{font-size:13px;font-weight:600;color:var(--ac)}
+.bar{height:6px;border-radius:3px;background:var(--ln);overflow:hidden;margin-bottom:18px}
+.bar i{display:block;height:100%;background:var(--ac)}
+.card{background:var(--card);color:var(--ct);border-radius:14px;padding:20px 18px;border:1px solid var(--ln)}
+.tag{font-size:13px;font-weight:600;color:var(--ac);margin-bottom:6px}
+.q{font-size:18px;font-weight:600;margin:0 0 16px}
+.opt{display:flex;gap:12px;align-items:center;width:100%;text-align:right;background:transparent;color:var(--ct);border:2px solid var(--ln);border-radius:10px;padding:12px 14px;margin-bottom:10px;font:inherit;font-size:17px;cursor:pointer}
+.opt b{display:inline-flex;width:28px;height:28px;align-items:center;justify-content:center;border-radius:50%;border:1.5px solid var(--ct);font-size:13px;flex:none}
+.opt.on{border-color:var(--ac);background:rgba(154,106,58,.14)}
+.opt:focus-visible,.go:focus-visible,input:focus-visible,.sec:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.go,.sec{display:block;width:100%;border-radius:10px;padding:13px;font:inherit;font-weight:600;font-size:16px;cursor:pointer;margin-top:6px}
+.go{background:var(--bt);color:var(--bx);border:2px solid var(--bt)}
+.go:disabled{opacity:.4;cursor:not-allowed}
+.sec{background:transparent;color:var(--ct);border:2px solid var(--ct)}
+input,textarea{width:100%;font:inherit;font-size:17px;padding:12px;border-radius:10px;border:2px solid var(--ln);background:#fff;color:#102C43;margin-bottom:10px;direction:ltr;text-align:left}
+.say{background:rgba(154,106,58,.12);border-radius:10px;padding:14px;margin-bottom:12px;font-size:18px}
+.say div{margin:2px 0}
+.lr{margin:6px 0;font-size:17px}
+.lis{display:flex;gap:8px;margin-bottom:6px}.lis .sec{margin-top:0}
+.card span.en,.card div.en,.card li{cursor:pointer}.card span.en::after,.card div.en::after,.card li::after{content:" 🔊";font-size:.7em;opacity:.55}
+.fb{border-inline-start:5px solid var(--ac)}
+.fb h2,.card h2{margin:0 0 8px;font-size:19px}
+.ans{background:rgba(154,106,58,.12);border-radius:8px;padding:8px 12px;margin:10px 0;font-size:17px}
+.note{font-size:13px;opacity:.8}
+details{margin:12px 0}summary{cursor:pointer;font-weight:600;color:var(--ac)}
+details li{margin:3px 0}
+ul{padding-inline-start:20px;margin:8px 0}
+.row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--ln)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const TARGET=50,DAY=1;
+function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const R=rng(7);
+const sh=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(R()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+
+/* ---------- Day 1 content (from instructor's lessons) ---------- */
+const cans=["I can dance.","I can cook.","I can drive a car.","I can write.","I can study.","I can read.","I can run.","You can help me.","You can speak English.","She can sing a song.","He can speak English.","They can walk.","We can speak English."];
+const places=[["taxi","تاکسی"],["hotel","هتل"],["hospital","بیمارستان"],["pharmacy","داروخانه"],["supermarket","سوپرمارکت"],["mall","مرکز خرید"]];
+const objs=[["pen","قلم"],["book","کتاب"],["notebook","دفتر"],["car","ماشین"],["cell phone","گوشی"],["water bottle","بطری آب"],["T-shirt","تی‌شرت"],["bag","کیف"],["suitcase","چمدان"]];
+const M=[];
+const mk=(q,c,w,y)=>M.push({q,c,y,o:sh([c,w])});
+cans.forEach((s,i)=>mk("کدوم جمله درسته؟",s,i%2?s.replace(" can "," cans "):s.replace(" can "," can to "),"بعد از can فعل ساده می‌آید؛ نه to، نه s."));
+places.forEach(([e,f],i)=>mk("«کجا می‌تونم "+f+" پیدا کنم؟» به انگلیسی چی می‌شه؟","Where can I find a "+e+"?","Where can I find a "+places[(i+1)%6][0]+"?","Where can I find a ...? یعنی «کجا می‌تونم ... پیدا کنم؟»"));
+objs.forEach(([e,f])=>mk("«"+f+" من کجاست؟»","Where is my "+e+"?","Is it my "+e+"?","Where is ...? برای پرسیدن مکانه."));
+[["Baggage claim is…","where you get your suitcase","the way out of the airport"],["The exit is…","the way out of the airport","where you get your suitcase"],["Restrooms are…","the toilets","the way out of the airport"]].forEach(a=>mk('<span class="en">'+a[0]+'</span>',a[1],a[2],"معنی عبارت‌های فرودگاه رو یادت باشه."));
+[["Can you cook?","Yes, I can.","Yes, I can’t."],["Can you drive a car?","Yes, I can.","Yes, I can’t."],["Can you dance?","Yes, I can.","Yes, I can’t."],["Can you help me, please?","Yes, I can.","Yes, I can’t."],["Can Javid speak English?","Yes, he can.","Yes, I can."]].forEach(a=>mk("جواب «بله» به <span class=\"en\">"+a[0]+"</span>",a[1],a[2],"جواب کوتاه با can: Yes, I can. / No, I can’t."));
+const P=[["بنویس: «من می‌تونم برقصم.»",["I can dance."]],["بنویس: «تو می‌تونی انگلیسی صحبت کنی.»",["You can speak English."]],["بنویس: «او (دختر) می‌تونه آهنگ بخونه.»",["She can sing a song."]],["بنویس: «اون‌ها می‌تونن آشپزی کنن.»",["They can cook."]],["بنویس: «او (پسر) می‌تونه ماشین برونه.»",["He can drive a car."]],["بنویس: «کیف من کجاست؟»",["Where is my bag?"]],["بنویس: «کجا می‌تونم تاکسی پیدا کنم؟»",["Where can I find a taxi?"]],["بنویس: «می‌تونی کمکم کنی، لطفاً؟»",["Can you help me, please?"]],["بنویس: «چمدون من کجاست؟»",["Where is my suitcase?"]],["به <span class=\"en\">Can you cook?</span> جواب بده (بله یا نه، جمله‌ی کامل).",["Yes, I can.","I can cook.","Yes, I can cook.","No, I can’t.","I can’t cook.","No, I can’t cook."]]];
+const RP=[["تازه به فرودگاه رسیدی ✈️ و چمدونت رو می‌خوای. از کارمند بپرس محل تحویل بار کجاست.",["Where is baggage claim?"]],["بیرون از ترمینال هستی. بپرس تاکسی کجا پیدا می‌شه.",["Where can I find a taxi?"]],["سرویس بهداشتی می‌خوای. از کارمند بپرس کجاست.",["Where is the restroom?"]],["می‌خوای از فرودگاه بری بیرون. بپرس خروجی کجاست.",["Where is the exit?"]],["به کمک نیاز داری. از کارمند کمک بخواه.",["Can you help me, please?"]]];
+const RD=[["Excuse me.","Can you help me, please?"],["Where is baggage claim?"],["Where is the restroom?","Where is the exit?"],["Where can I find a taxi?","Thank you so much."],["I can dance.","You can cook."]];
+const mc=sh(M).slice(0,30),pr=sh(P),rp=sh(RP);
+let items=[],a=0,b=0,c=0,d=0;
+for(let k=0;k<10;k++){items.push({t:"m",...mc[a++]},{t:"m",...mc[a++]},{t:"p",q:pr[b][0],a:pr[b++][1]},{t:"m",...mc[a++]});
+ if(k%2){items.push({t:"q",q:rp[c][0],a:rp[c++][1]})}else{items.push({t:"r",s:RD[d++]})}}
+items=items.slice(0,TARGET);
+
+/* ---------- state ---------- */
+let S={n:"",i:0,r:[],v:"start",last:null},sel=-1;
+try{const x=JSON.parse(localStorage.getItem("rexy-d2"));if(x&&x.r)S=x}catch(e){}
+if(S.v!=="start"){S.rv=S.v;S.v="start"}
+const save=()=>{try{localStorage.setItem("rexy-d2",JSON.stringify(S))}catch(e){}};
+const $=document.getElementById("app");
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const core=s=>{let t=s.toLowerCase().replace(/[’‘`]/g,"'").replace(/'/g,"").replace(/[^a-z0-9 ]/g," ").replace(/\s+/g," ").trim();return t.replace(/^excuse me /,"").replace(/ (thank you so much|thank you)$/,"").trim()};
+const hd=()=>{const k=S.i;return `<div class="top"><div class="brand">EASY PEASY<small>ENGLISH FOR REAL LIFE · REXY CLUB</small></div><div class="qn en">Day ${DAY} · Q${String(k+1).padStart(2,"0")} / ${items.length}</div></div><div class="bar"><i style="width:${(k/items.length)*100}%"></i></div>`};
+
+function render(){
+ sel=-1;const it=items[S.i];let h="";
+ if(S.v==="start"){
+  const has=S.r.length>0;
+  h=`<div class="top"><div class="brand">EASY PEASY<small>ENGLISH FOR REAL LIFE · REXY CLUB</small></div></div><div class="bar"></div><main class="card"><h2>سلام! 🐰💚</h2><p>من Rexy هستم. آیما منو فرستاده تا رفیقت باشم و با هم انگلیسی تمرین کنیم.</p><p class="note">امروز ${items.length} تمرین داریم: گزینه‌ای، نوشتن، نقش‌آفرینی و بلندخوانی. اشتباه کردن آزاده.</p><p class="note">👆 روی هر جمله‌ی انگلیسی که 🔊 داره بزن تا تلفظش رو بشنوی.</p><label for="nm" class="note">اسمت</label><input id="nm" placeholder="اسمت رو اینجا بنویس" value="${esc(S.n)}" style="direction:rtl;text-align:right" autocomplete="off"><details><summary>مرور سریع درس امروز (CAN و فرودگاه)</summary><ul class="en" style="direction:ltr;text-align:left"><li>I can dance. / You can cook. / She can sing a song.</li><li>Can you cook? — Yes, I can. / No, I can’t.</li><li>Where is my pen? / Where can I find a taxi?</li><li>Excuse me. Can you help me, please?</li><li>Where is baggage claim? (where you get your suitcase)</li><li>Where is the restroom? (the toilets)</li><li>Where is the exit? (the way out of the airport)</li></ul></details>${has&&S.v==="start"?`<button class="go" onclick="resume()">ادامه از Q${String(S.i+1).padStart(2,"0")}</button><button class="sec" onclick="restart()">شروع دوباره</button>`:`<button class="go" onclick="begin()">بزن بریم</button>`}</main>`;
+ }else if(S.v==="ls"){h=lesson()}else if(S.v==="q"){
+  h=hd()+`<main class="card">`;
+  if(it.t==="m")h+=`<div class="tag">🎯 گزینه‌ای</div><p class="q">${it.q}</p>`+it.o.map((o,k)=>`<button class="opt" id="o${k}" onclick="pick(${k})"><b class="en">${"AB"[k]}</b><span class="en">${o}</span></button>`).join("")+`<div class="lis"><button class="sec" onclick="spO(0)">🔊 A</button><button class="sec" onclick="spO(1)">🔊 B</button></div><button class="go" id="go" disabled onclick="sendM()">ارسال پاسخ</button>`;
+  else if(it.t==="p"||it.t==="q")h+=`<div class="tag">${it.t==="p"?"✍️ نوشتن":"💬 نقش‌آفرینی"}</div><p class="q">${it.q}</p><input id="inp" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Type in English"><button class="go" onclick="sendP()">ارسال پاسخ</button>`;
+  else h+=`<div class="tag">📖 بلندخوانی</div><p class="q">این جمله‌ها رو با صدای بلند بخون. آروم و واضح.</p><div class="say">${it.s.map(x=>`<div class="en">${x}</div>`).join("")}</div><button class="sec" onclick="say()">🔊 گوش بده</button><button class="sec" onclick="say(.6)">🐢 آهسته</button><button class="go" onclick="sendR()">خوندم</button><p class="note">فعلاً صدای تو ارزیابی نمی‌شه؛ این تمرین فقط ثبت می‌شه که انجامش دادی.</p>`;
+  h+=`</main>`;
+ }else if(S.v==="fb"){
+  const L=S.last;
+  h=hd()+`<main class="card fb"><h2>${L.ok===null?"آفرین! 🐰":L.ok?"درسته! 🐰👏":"تلاش خوبی بود! 🐰"}</h2>${L.ok===false?`<p>شکل درست:</p><div class="ans en">${L.c}</div>`:L.ok?`<div class="ans en">${L.c}</div>`:""}${L.u&&L.ok===false?`<p class="note">جوابت (اشتباه):</p><div class="ans" dir="ltr" style="text-align:left">${L.u}</div>`:""}${L.y?`<p class="note">${L.y}</p>`:""}${L.c?'<button class="sec" onclick="spL()">🔊 گوش بده</button>':""}<button class="go" id="nx" onclick="next()">بعدی</button></main>`;
+ }else if(S.v==="cp"){
+  const bl=S.r.slice(S.i-4,S.i+1).filter(x=>x.ok!==null),g=bl.filter(x=>x.ok).length,ra=bl.length?g/bl.length:1;
+  h=hd()+`<main class="card"><h2>مرور ۵ تمرین اخیر</h2><p>${g} از ${bl.length} درست</p><p>${ra===1?"عالیه! همین‌طور ادامه بده 💪":ra>=.6?"خوب پیش می‌ری. اشتباه‌ها رو یه بار دیگه مرور کن.":"اشکال نداره؛ برای همین تمرین می‌کنیم. قدم‌به‌قدم 🐰"}</p><button class="go" onclick="cont()">ادامه</button></main>`;
+ }else{
+  const f=t=>S.r.filter(x=>x&&x.t===t),ok=t=>f(t).filter(x=>x.ok).length;
+  const A=analyze();const note=`Student: ${S.n}\nDay: ${DAY}\nActivities completed: ${S.r.length}/${items.length}\nMultiple-choice: ${ok("m")}/${f("m").length}\nTyped answers: ${ok("p")}/${f("p").length}\nRole-play (typed): ${ok("q")}/${f("q").length}\nRead-aloud: ${f("r").length} done (self-reported, audio not assessed)\n${A.note}\nRequest: Day 2 access`;
+  h=`<div class="top"><div class="brand">EASY PEASY<small>ENGLISH FOR REAL LIFE · REXY CLUB</small></div></div><div class="bar"><i style="width:100%"></i></div><main class="card"><h2>گزارش روز ${DAY} 🐰</h2><div class="row"><span>گزینه‌ای</span><b class="en">${ok("m")} / ${f("m").length}</b></div><div class="row"><span>نوشتن</span><b class="en">${ok("p")} / ${f("p").length}</b></div><div class="row"><span>نقش‌آفرینی</span><b class="en">${ok("q")} / ${f("q").length}</b></div><div class="row"><span>بلندخوانی (انجام شد)</span><b class="en">${f("r").length} / 5</b></div><p class="note">نمره‌ی گزینه‌ای به‌تنهایی نشان‌دهنده‌ی تسلط نیست؛ تلفظ هم ارزیابی نشده.</p>${A.html}<textarea id="pn" readonly rows="12">${esc(note)}</textarea><button class="go" onclick="shareN()">📤 ارسال نتیجه برای آیما</button><button class="sec" onclick="copyN()" id="cb">کپی گزارش</button><button class="sec" onclick="restart()">تمرین دوباره</button></main>`;
+ }
+ $.innerHTML=h;
+ const i=document.getElementById("inp");if(i){i.focus({preventScroll:true});i.addEventListener("keydown",e=>{if(e.key==="Enter")sendP()})}
+ window.scrollTo(0,0);
+}
+function begin(){S.n=(document.getElementById("nm").value||"رفیق").trim();S.i=0;S.r=[];S.v="ls";S.lp=0;save();render()}
+function resume(){S.n=(document.getElementById("nm").value||S.n).trim();S.v=S.rv||"q";save();render()}
+function restart(){S={n:"",i:0,r:[],v:"start",last:null};save();render()}
+function pick(k){sel=k;[0,1].forEach(j=>document.getElementById("o"+j).classList.toggle("on",j===k));document.getElementById("go").disabled=false}
+function rec(t,ok,c,y,u){const pl=String(c).replace(/<[^>]+>/g,"");S.r[S.i]={t,ok,k:tp(pl),w:ok===false?pl:""};S.last={ok,c,y,u};S.v="fb";save();render();document.getElementById("nx").focus({preventScroll:true})}
+function sendM(){const it=items[S.i];if(sel<0)return;rec("m",it.o[sel]===it.c,'<span class="en">'+it.c+"</span>",(it.o[sel]===it.c?"":why(it.o[sel],it.c)+" ")+it.y+" "+formula(it.c),it.o[sel])}
+function sendP(){const it=items[S.i],v=document.getElementById("inp").value;if(!v.trim())return;const ok=it.a.some(x=>core(x)===core(v));rec(it.t,ok,it.a[0],ok?formula(it.a[0]):whyP(v,it.a[0]),esc(v))}
+function sendR(){rec("r",null,"","")}
+const LS=[
+{t:"۱. CAN (می‌تونم / می‌تونی)",e:"can یعنی «می‌تونم، می‌تونی، می‌تونه». بعد از can همیشه فعل ساده می‌آید؛ نه to می‌ذاریم، نه s.",f:"فاعل + can + فعل ساده",x:[["I can dance.",""],["You can cook.",""],["She can sing a song.",""],["They can run.",""],["We can speak English.",""],["It can run.",""],["I can’t cook.","منفی: can’t"]],n:"👆 روی هر جمله‌ی انگلیسی بزن تا تلفظش رو بشنوی."},
+{t:"۲. سؤال با CAN",e:"برای سؤال، can می‌ره اول جمله.",f:"Can + فاعل + فعل ساده ؟",x:[["Can you cook?",""],["Yes, I can.","بله"],["No, I can’t.","نه"],["Can Javid speak English?",""],["Yes, he can.",""],["No, he can’t.",""],["Can you help me, please?","می‌تونی کمکم کنی، لطفاً؟"]],n:""},
+{t:"۳. Where is ...؟",e:"برای پرسیدن جای یک چیز: «... کجاست؟»",f:"Where is + my + اسم چیز ؟",x:[["Where is my pen?","قلمم کجاست؟"],["Where is my bag?",""],["Where is my suitcase?",""],["Is it my pen?","آیا این قلم منه؟"],["It is my pen.","این قلم منه."]],n:""},
+{t:"۴. Where can I find ...؟",e:"برای پرسیدن اینکه یک جا رو کجا می‌شه پیدا کرد.",f:"Where can I find + a + مکان ؟",x:[["Where can I find a taxi?","تاکسی"],["Where can I find a hotel?","هتل"],["Where can I find a hospital?","بیمارستان"],["Where can I find a pharmacy?","داروخانه"],["Where can I find a supermarket?","سوپرمارکت"],["Where can I find a mall?","مرکز خرید"]],n:""},
+{t:"۵. فرودگاه ✈️ بخش اول",e:"این جمله‌ها رو توی فرودگاه استفاده می‌کنی.",f:"ببخشید ← کمک بخواه ← تشکر کن",x:[["Excuse me.","ببخشید"],["Can you help me, please?","می‌تونی کمکم کنی، لطفاً؟"],["Thank you so much.","خیلی ممنون"],["Where is baggage claim?","محل تحویل چمدون"],["Where is the restroom?","سرویس بهداشتی (the toilets)"],["Where is the exit?","خروجی (راه بیرون رفتن از فرودگاه)"],["Where can I find a taxi?",""]],n:""}];
+function lesson(){const p=LS[S.lp],last=S.lp===LS.length-1;return `<div class="top"><div class="brand">EASY PEASY<small>ENGLISH FOR REAL LIFE · REXY CLUB</small></div><div class="qn">درس ${S.lp+1} از ${LS.length}</div></div><div class="bar"><i style="width:${(S.lp+1)/LS.length*100}%"></i></div><main class="card"><div class="tag">📘 درس</div><h2>${p.t}</h2><p>${p.e}</p><div class="ans" style="font-weight:600">${p.f}</div>${p.x.map(x=>`<div class="lr"><span class="en">${x[0]}</span>${x[1]?" — "+x[1]:""}</div>`).join("")}${p.n?`<p class="note">${p.n}</p>`:""}<button class="go" onclick="lgo(1)">${last?"شروع تمرین":"بعدی"}</button>${S.lp?`<button class="sec" onclick="lgo(-1)">قبلی</button>`:""}<button class="sec" onclick="lgo(9)">رد شدن به تمرین</button></main>`}
+function lgo(d){if(d===9||S.lp+d>=LS.length){S.v="q"}else S.lp+=d;save();render()}
+function formula(k){
+ if(/^Where can I find/.test(k))return "فرمول: Where can I find + a + مکان ؟";
+ if(/^Where is/.test(k))return "فرمول: Where is + my + اسم چیز ؟";
+ if(/^Can .*\?$/.test(k))return "فرمول: Can + فاعل + فعل ساده ؟";
+ if(/^(Yes|No), /.test(k))return "جواب کوتاه: Yes, I can. / No, I can’t.";
+ if(/ can /.test(k))return "فرمول: فاعل + can + فعل ساده";
+ return ""}
+function sp(t,r){try{const u=new SpeechSynthesisUtterance(t),vs=speechSynthesis.getVoices();u.lang="en-US";u.rate=r||.85;const v=vs.find(x=>/^en[-_]US/i.test(x.lang))||vs.find(x=>/^en/i.test(x.lang));if(v)u.voice=v;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
+function say(r){sp(items[S.i].s.join(" "),r)}
+function spO(k){sp(items[S.i].o[k].replace(/<[^>]+>/g,""))}
+function spL(){sp(S.last.c.replace(/<[^>]+>/g,""))}
+function why(c,k){
+ if(/ cans /.test(c))return "بعد از can نباید s بیاد: I cans ✗ ← I can ✓.";
+ if(/ can to /.test(c))return "بعد از can نباید to بیاد: can to ✗ ← can ✓.";
+ if(/^Is it/.test(c))return "Is it ...? یعنی «آیا این ... هست؟». برای پرسیدن مکان باید Where is ... بگی.";
+ if(/^Where can I find/.test(c))return "اینجا مکان رو اشتباه گرفتی؛ به معنی فارسی سؤال دقت کن.";
+ if(/can’t/.test(c))return "جواب «Yes» با can’t جور درنمیاد. بله: Yes, I can. / نه: No, I can’t.";
+ if(/^Yes, I can\./.test(c)&&/he/.test(k))return "سؤال درباره‌ی Javid هست، پس باید با he جواب بدی، نه I.";
+ return ""}
+function rule(k){
+ if(/^Where can I find/.test(k))return "Where can I find a ...? یعنی «کجا می‌تونم ... پیدا کنم؟»";
+ if(/^Where is/.test(k))return "Where is ...? برای پرسیدن مکان.";
+ if(/^Can you/.test(k))return "Can you ...? برای درخواست کمک.";
+ if(/ can /.test(k))return "ساختار: فاعل + can + فعل ساده.";
+ return ""}
+function whyP(v,k){
+ const cv=core(v),u=cv.split(" ").filter(Boolean),c=core(k).split(" "),ex=u.filter(w=>!c.includes(w)),mi=c.filter(w=>!u.includes(w)),m=[];
+ if(!u.length)m.push("جوابت باید به انگلیسی باشه.");
+ else{
+  if(/\bcan to\b|\bcans\b/.test(cv))m.push("بعد از can نه to می‌آید و نه s.");
+  if(ex.length)m.push("کلمه‌ی اشتباه یا اضافه: "+ex.join(", ")+".");
+  if(mi.length)m.push("کلمه‌ی جا افتاده: "+mi.join(", ")+".");
+  if(!ex.length&&!mi.length)m.push("ترتیب کلمه‌ها رو چک کن.")}
+ return m.join(" ")+" "+formula(k)}
+function next(){if((S.i+1)%5===0){S.v=S.i+1>=items.length?"end":"cp"}else{S.i++;S.v="q"}save();render()}
+function cont(){S.i++;S.v="q";save();render()}
+function tp(s){
+ if(/baggage|restroom|exit|Excuse|Thank|suitcase|toilets|way out/i.test(s))return "air";
+ if(/^Where can I find/.test(s))return "find";
+ if(/^Where is|^Is it|^It is/.test(s))return "where";
+ if(/^Can .*\?$|^(Yes|No), /.test(s))return "canq";
+ if(/ can /.test(s))return "can";
+ return ""}
+const TL={can:"جمله‌های can (فاعل + can + فعل ساده)",canq:"سؤال و جواب کوتاه با can",where:"Where is ... (پرسیدن جای چیزها)",find:"Where can I find ... (پیدا کردن مکان‌ها)",air:"عبارت‌های فرودگاه"};
+function analyze(){
+ const st={};S.r.forEach(x=>{if(x&&x.k&&x.ok!==null){const o=st[x.k]=st[x.k]||{n:0,g:0};o.n++;if(x.ok)o.g++}});
+ const ks=Object.keys(st),good=ks.filter(k=>st[k].n>=2&&st[k].g/st[k].n>=.8),weak=ks.filter(k=>st[k].g/st[k].n<.6),
+ rv=[...new Set(S.r.filter(x=>x&&x.w&&/[.?]$/.test(x.w)).map(x=>x.w))].slice(0,4),
+ li=a=>a.map(k=>"• "+TL[k]+" ("+st[k].g+" از "+st[k].n+")");
+ const sg=good.length?li(good):["تمرین رو تا آخر انجام دادی؛ این خودش بزرگ‌ترین نقطه‌ی قوته 💪"];
+ const wk=weak.length?li(weak):["مورد مشخصی پیدا نشد؛ فقط مرور روزانه یادت نره."];
+ const sm=["can: فاعل + can + فعل ساده","سؤال: Can + فاعل + فعل ساده ؟","Where is + my + اسم چیز ؟","Where can I find + a + مکان ؟","فرودگاه: Excuse me / Can you help me, please? / Thank you so much."];
+ const html=`<h2>نقاط قوت ✅</h2><p>${sg.join("<br>")}</p><h2>نیاز به تمرین 🔁</h2><p>${wk.join("<br>")}</p>${rv.length?`<p class="note">جمله‌هایی که مرور کن:</p>${rv.map(x=>`<div class="lr"><span class="en">${x}</span></div>`).join("")}`:""}<h2>خلاصه‌ی درس امروز 📘</h2><p>${sm.join("<br>")}</p><div class="ans">حتماً نتیجه‌ات رو برای آیما بفرست تا دسترسی‌ت به روز دوم باز بشه 🐰</div>`;
+ const note=`Strengths: ${good.map(k=>TL[k]).join(" | ")||"-"}\nNeeds practice: ${weak.map(k=>TL[k]).join(" | ")||"-"}\nSentences to review: ${rv.join(" | ")||"-"}`;
+ return{html,note}}
+function shareN(){const t=document.getElementById("pn").value;try{if(navigator.share){navigator.share({text:t}).catch(()=>{});return}}catch(e){}copyN()}
+function copyN(){const t=document.getElementById("pn");t.select();let ok=false;try{ok=document.execCommand("copy")}catch(e){}try{navigator.clipboard.writeText(t.value);ok=true}catch(e){}document.getElementById("cb").textContent=ok?"کپی شد":"متن رو انتخاب و کپی کن"}
+document.addEventListener("click",e=>{const t=e.target.closest("li,span.en,div.en");if(!t||!t.closest(".card"))return;const s=t.textContent.trim();if(/[A-Za-z]{2}/.test(s))sp(s)});
+render();
+</script>
+</body>
+</html>
