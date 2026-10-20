@@ -250,6 +250,19 @@ const STEPS=[
  {fm:[15,15],t:"جمله‌های فرودگاه ✈️",f:["Excuse me. → Can you help me, please? → Thank you so much.","Where is baggage claim? · Where is the restroom? · Where is the exit?"],
   q:[...AIRQ.map(aq),O("«ببخشید» به انگلیسی چی می‌شه؟","Excuse me.","Thank you so much.",YF),O("«خیلی ممنون» به انگلیسی چی می‌شه؟","Thank you so much.","Excuse me.",YF),rl(0),rl(2),rl(3),rd(1),rd(2)]}
 ];
+const MIS=[
+ {em:"⏳",nm:"ساعت صفر",b:"ساعت ۳ شبه و Rexy توی یه فرودگاه خالی گیر کرده. در ترمینال قفله و فقط کسی که بگه «چی می‌تونه» رد می‌شه.",w:"🔑 کلید can رو گرفتی! درِ ترمینال باز شد."},
+ {em:"🎭",nm:"سایه‌ها",b:"چهار نفر باید باهات بیان و هر کدوم یه توانایی دارن. اول بشناسشون.",w:"🕶️ تیم کامل شد! می‌دونی هر کس چی می‌تونه."},
+ {em:"🌀",nm:"نفر بعدی",b:"نگهبان سؤال می‌پرسه. جواب‌هات رو آماده کن.",w:"🛂 از گیت رد شدی! نگهبان قانع شد."},
+ {em:"🔮",nm:"سکوت",b:"باتری داره تموم می‌شه. باید از یکی کمک بخوای.",w:"📡 سیگنال رسید! یکی داره میاد کمکت."},
+ {em:"🧩",nm:"شماره ۱۷",b:"یه چمدون روی نواره. ثابت کن مال توئه.",w:"🧳 ثابت کردی مال توئه!"},
+ {em:"🪞",nm:"آینه‌ی سیاه",b:"پاسپورت و بلیط‌ها غیبشون زده. کجان؟",w:"🕵️ همه‌شون پیدا شدن!"},
+ {em:"🌫️",nm:"ده دقیقه",b:"۱۰ دقیقه وقت داری. تاکسی کجاست؟",w:"🚕 تاکسی پیدا شد و موتورش روشنه!"},
+ {em:"🌅",nm:"پرواز ۰۰۷",b:"همه چیز رو پشت‌سرهم بگو. در خروجی منتظره.",w:"✈️ فرار کردی! پرواز منتظرت بود."}
+];
+STEPS.forEach((s,i)=>Object.assign(s,MIS[i]));
+const FT=180;
+function clk(){const d=S.r.filter(Boolean).length,l=Math.round(FT*(1-d/items.length));return Math.floor(l/60)+":"+String(l%60).padStart(2,"0")}
 const SSZ=STEPS.map(s=>s.q.length),SST=[];{let t=0;SSZ.forEach(n=>{SST.push(t);t+=n})}
 const stOf=k=>{let s=0;while(s<SSZ.length-1&&k>=SST[s+1])s++;return s};
 const stR=s=>[SST[s],SST[s]+SSZ[s]];
@@ -319,7 +332,7 @@ const flame=()=>{const L=S.v==="fb"?S.last:null,cur=S.st||0;
   if(cur>=FIRE)return `<span class="fire${L&&L.ok===true?(L.sb<FIRE?" in":" up"):""}">🔥 <b>${cur}</b></span>`;
   if(L&&L.sb>=FIRE&&cur===0)return `<span class="fire out">🔥</span>`;
   if(S.fe)return `<span class="fire off">🔥</span>`;return ""};
-const hd=()=>{const k=S.i,cn=(S.v==="fb"&&S.last&&S.last.cb!=null)?S.last.cb:coins();return `<div class="top"><div class="brand"><span class="rx" role="img" aria-label="Rexy"></span><span class="bt">EZI PIZI<small>ENGLISH FOR REAL LIFE · REXY CLUB</small></span></div><div class="rt"><div class="qn en">Step ${lvPos(k).L}/${STEPS.length} · Q${lvPos(k).p} / ${lvPos(k).n}</div><div class="cr"><div class="coin" id="cc">🪙 <b id="cn">${cn}</b></div><div class="coin hr2${S.v==="fb"&&S.last&&S.last.hl?" pop":""}">❤️ <b>${hl()}</b></div>${flame()}<button class="snd" onclick="tg()" aria-label="صدا روشن/خاموش" aria-pressed="${sndOn()}">${sndOn()?"🔊":"🔇"}</button></div></div></div><div class="bar"><i style="width:${S.v==="lr"?100:(lvPos(k).p-1)/lvPos(k).n*100}%"></i></div>`};
+const hd=()=>{const k=S.i,cn=(S.v==="fb"&&S.last&&S.last.cb!=null)?S.last.cb:coins();return `<div class="top"><div class="brand"><span class="rx" role="img" aria-label="Rexy"></span><span class="bt">EZI PIZI<small>ENGLISH FOR REAL LIFE · REXY CLUB</small></span></div><div class="rt"><div class="qn en">${STEPS[lvPos(k).L-1].em} Q${lvPos(k).p} / ${lvPos(k).n}</div><div class="cr"><div class="coin" id="cc">🪙 <b id="cn">${cn}</b></div><div class="coin hr2${S.v==="fb"&&S.last&&S.last.hl?" pop":""}">❤️ <b>${hl()}</b></div>${flame()}<button class="snd" onclick="tg()" aria-label="صدا روشن/خاموش" aria-pressed="${sndOn()}">${sndOn()?"🔊":"🔇"}</button></div></div></div><div class="bar"><i style="width:${S.v==="lr"?100:(lvPos(k).p-1)/lvPos(k).n*100}%"></i></div>`};
 
 function render(){
  sel=-1;const it=items[S.i];let h="";
@@ -407,18 +420,18 @@ const FM=[
 {t:"فرمول ۴: فرودگاه ✈️",e:"جمله‌های کاربردی فرودگاه:",f:"ببخشید ← کمک بخواه ← تشکر کن",x:[["Excuse me.","ببخشید"],["Can you help me, please?","می‌تونی کمکم کنی، لطفاً؟"],["Thank you so much.","خیلی ممنون"],["Where is baggage claim?","محل تحویل چمدون"],["Where is the restroom?","سرویس بهداشتی (the toilets)"],["Where is the exit?","خروجی (راه بیرون رفتن از فرودگاه)"],["Where can I find a taxi?","کجا می‌تونم تاکسی پیدا کنم؟"]],n:"",
  c:[{w:[],q:"از کارمند فرودگاه کمک بخواه: «ببخشید، می‌تونید کمکم کنید؟»",a:["Can you help me, please?","Excuse me. Can you help me, please?"]}]}];
 const LS=FM.flatMap(p=>[{p},...(p.c||[]).map(c=>({p,c}))]);
-function lhead(){return `<div class="top"><div class="brand"><span class="rx" role="img" aria-label="Rexy"></span><span class="bt">EZI PIZI<small>ENGLISH FOR REAL LIFE · REXY CLUB</small></span></div><div class="qn en">Step ${(S.sp||0)+1}/${STEPS.length} · ${S.lp-stPg(S.sp||0)[0]+1} / ${stPg(S.sp||0)[1]-stPg(S.sp||0)[0]+1}</div></div><div class="bar"><i style="width:${(S.lp-stPg(S.sp||0)[0]+1)/(stPg(S.sp||0)[1]-stPg(S.sp||0)[0]+1)*100}%"></i></div>`}
+function lhead(){return `<div class="top"><div class="brand"><span class="rx" role="img" aria-label="Rexy"></span><span class="bt">EZI PIZI<small>ENGLISH FOR REAL LIFE · REXY CLUB</small></span></div><div class="qn en">${STEPS[S.sp||0].em} ${S.lp-stPg(S.sp||0)[0]+1} / ${stPg(S.sp||0)[1]-stPg(S.sp||0)[0]+1}</div></div><div class="bar"><i style="width:${(S.lp-stPg(S.sp||0)[0]+1)/(stPg(S.sp||0)[1]-stPg(S.sp||0)[0]+1)*100}%"></i></div>`}
 function lesson(){
  const st=LS[S.lp]||LS[0],p=st.p,c=st.c,last=S.lp>=stPg(S.sp||0)[1];
- const nav=`<button class="go" id="lnx" onclick="${c?"cnext()":"lgo(1)"}">${c?"بعدی":(last?"شروع تمرین":"بعدی")}</button>${S.lp>stPg(S.sp||0)[0]?`<button class="sec" onclick="lgo(-1)">قبلی</button>`:""}<button class="sec" onclick="lgo(9)">بی‌خیال درس شو، برو تمرین! 😄</button>`;
+ const nav=`<button class="go" id="lnx" onclick="${c?"cnext()":"lgo(1)"}">${c?"بعدی":(last?"شروع ماموریت 🚀":"بعدی")}</button>${S.lp>stPg(S.sp||0)[0]?`<button class="sec" onclick="lgo(-1)">قبلی</button>`:""}<button class="sec" onclick="lgo(9)">برو سراغ ماموریت! 😎</button>`;
  if(c)return lhead()+`<main class="card"><div class="tag">✍🏻 خودت بساز</div>${c.w&&c.w.length?`<p class="le">کلمه‌ی جدید:</p><div class="lx">${c.w.map(w=>`<div class="lr"><span class="en">${w[0]}</span><small>${w[1]}</small></div>`).join("")}</div>`:""}<p class="q">${c.q}</p><input id="cin" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Type in English"><div id="cres"></div>${nav}</main>`;
- return lhead()+`<main class="card${S.hint?"":" hp"}">${S.hint?"":HINT}<div class="tag">📘 فرمول</div><h2>${ttl(p.t)}</h2>${p.e?`<p class="le">${p.e}</p>`:""}${p.f?fbox(p.f):""}<div class="lx">${p.x.map(x=>`<div class="lr${/^(Yes|No)\b/.test(x[0])?" a":""}"><span class="en">${x[0]}</span><small>${x[1]}</small></div>`).join("")}</div>${p.n?`<p class="note">${p.n}</p>`:""}${nav}</main>`}
+ return lhead()+`<main class="card${S.hint?"":" hp"}">${S.hint?"":HINT}${S.lp===stPg(S.sp||0)[0]?`<div class="ans" style="margin:0 0 10px"><b>${STEPS[S.sp||0].em} ${STEPS[S.sp||0].nm}</b><br>${STEPS[S.sp||0].b}</div>`:""}<div class="tag">🎒 ابزار ماموریت</div><h2>${ttl(p.t)}</h2>${p.e?`<p class="le">${p.e}</p>`:""}${p.f?fbox(p.f):""}<div class="lx">${p.x.map(x=>`<div class="lr${/^(Yes|No)\b/.test(x[0])?" a":""}"><span class="en">${x[0]}</span><small>${x[1]}</small></div>`).join("")}</div>${p.n?`<p class="note">${p.n}</p>`:""}${nav}</main>`}
 function lgo(d){sfx(d<0?"pv":"nx");const[pa,pb]=stPg(S.sp||0);if(d===9||S.lp+d>pb){S.ss=S.ss||{};S.ss[S.sp||0]=1;S.v=S.r[S.i]?"rv":"q"}else S.lp=Math.max(pa,S.lp+d);save();render()}
 function cnext(){
  const c=LS[S.lp].c,i=document.getElementById("cin"),v=i.value.trim(),ok=!!v&&c.a.some(x=>core(x)===core(v)),last=S.lp>=stPg(S.sp||0)[1];
  i.disabled=true;
  document.getElementById("cres").innerHTML=`<p class="note">${ok?"آفرین، درسته! 🐰👏🏻":(v?"اشکال نداره! جواب درست:":"جواب درست:")}</p><div class="lx"><div class="lr"><span class="en">${c.a[0]}</span></div>${(c.r||[]).map(x=>`<div class="lr a"><span class="en">${x}</span></div>`).join("")}</div>`;
- const bt=document.getElementById("lnx");bt.textContent=last?"شروع تمرین":"ادامه";bt.setAttribute("onclick","lgo(1)");bt.focus({preventScroll:true})}
+ const bt=document.getElementById("lnx");bt.textContent=last?"شروع ماموریت 🚀":"ادامه";bt.setAttribute("onclick","lgo(1)");bt.focus({preventScroll:true})}
 function formula(k){
  const F=t=>"فرمول: "+fx(t);
  if(/^Is it/.test(k))return F("Is it + my + اسم ؟");
@@ -522,8 +535,8 @@ function sdw(){
  const s=stOf(S.i),st=STEPS[s],[a,e]=stR(s);let ok=0,n=0;
  for(let i=a;i<e;i++){const x=S.r[i];if(x&&x.ok!==null){n++;if(x.ok)ok++}}
  const wr=pend().filter(i=>i>=a&&i<e).length;
- return hd()+`<main class="card"><div class="cel s"><div class="cimg${ok===n?"":" w"}" role="img" aria-label="Rexy"></div></div><h2 style="text-align:center">مرحله‌ی ${s+1} از ${STEPS.length} تموم شد ✅</h2><p style="text-align:center"><bdi>${ok}</bdi> از <bdi>${n}</bdi> درست</p><p class="note">فرمول این مرحله 📘</p><div class="ans fx" dir="ltr" style="font-weight:600">${st.f.join("<br>")}</div>${wr?`<button class="sec" onclick="startReview()">🔁 مرور اشتباه‌ها (${wr})</button>`:""}<button class="go" onclick="contStep()">مرحله‌ی بعد 💪🏻</button><button class="sec" onclick="later()">چند ساعت دیگه میام</button></main>`}
-function stepList(){return `<h2 style="margin:16px 0 6px">مرحله‌های فرودگاه ✈️</h2>`+STEPS.map((st,k)=>{const[a,e]=stR(k);let n=0;for(let i=a;i<e;i++)if(S.r[i])n++;const d=stDone(k),u=stUnlocked(k);return `<button type="button" class="sec" style="text-align:right;display:flex;gap:10px;align-items:center${u?"":";opacity:.45"}" onclick="pickStep(${k})"><span>${d?"✅":u?k+1:"🔒"}</span><span class="ltr" style="flex:1">${st.t}</span><small><bdi>${n}/${e-a}</bdi></small></button>`}).join("")}
+ return hd()+`<main class="card"><div class="cel s"><div class="cimg${ok===n?"":" w"}" role="img" aria-label="Rexy"></div></div><h2 style="text-align:center">${st.w}</h2><p style="text-align:center"><bdi>${ok}</bdi> از <bdi>${n}</bdi> درست · ⏳ تا پرواز: <bdi>${clk()}</bdi></p><p class="note">🎒 ابزار جدید توی کوله‌ی Rexy</p><div class="ans fx" dir="ltr" style="font-weight:600">${st.f.join("<br>")}</div>${wr?`<button class="sec" onclick="startReview()">🔁 مرور اشتباه‌ها (${wr})</button>`:""}<button class="go" onclick="contStep()">ماموریت بعدی 💪🏻</button><button class="sec" onclick="later()">چند ساعت دیگه میام</button></main>`}
+function stepList(){return `<h2 style="margin:16px 0 4px">ماموریت‌های فرار 🕶️</h2><p class="note" style="margin:0 0 8px">⏳ تا پرواز: <bdi>${clk()}</bdi></p>`+STEPS.map((st,k)=>{const[a,e]=stR(k);let n=0;for(let i=a;i<e;i++)if(S.r[i])n++;const d=stDone(k),u=stUnlocked(k);return `<button type="button" class="sec" style="text-align:right;display:flex;gap:10px;align-items:center${u?"":";opacity:.45"}" onclick="pickStep(${k})"><span style="font-size:22px">${st.em}</span><span style="flex:1">${st.nm}</span><small>${!u?"🔒":d?"✅":"<bdi>"+n+"/"+(e-a)+"</bdi>"}</small></button>`}).join("")}
 function pickLevel(L){
  if(!unlocked(L)){startLevel(L);return}
  const I=lvInfo(L);
@@ -556,7 +569,7 @@ function regen(){const n=Date.now();if(S.hp==null){S.hp=HMAX;S.ht=n;return}if(S.
 function hl(){regen();return S.hp}
 function hmin(){regen();if(S.hp>=HMAX)return"";const ms=Math.max(0,S.ht+HT-Date.now()),m=Math.floor(ms/60000),sc=Math.floor(ms%60000/1000);return m+":"+String(sc).padStart(2,"0")}
 function stopH(){const cu=curLv(),j=jn(cu),h=hl();
-  return `<div class="stop"><span class="se">${j[0]}</span><div><b>مرحله‌ی ${cu+1}${j[1]?" · "+j[1]:""}</b><div class="note" style="margin:2px 0 0;font-size:12px">${passedN()?"🧭 "+passedN()+" ایستگاه رد کردی":"سفر از اینجا شروع می‌شه"}</div></div></div>`}
+  return `<div class="stop"><span class="se">${j[0]}</span><div><b>فرار از فرودگاه</b><div class="note" style="margin:2px 0 0;font-size:12px">${S.r.filter(Boolean).length?"⏳ تا پرواز: "+clk()+" · "+STEPS.filter((_,k)=>stDone(k)).length+" از "+STEPS.length+" ماموریت":"ساعت ۳ شبه؛ Rexy توی فرودگاه گیر کرده 🕒"}</div></div></div>`}
 function openMap(){setNm();const cu=curLv();S.wf=(S.mc!=null&&S.mc<cu)?S.mc:null;S.mc=cu;S.v="map";save();render();const c=document.getElementById("curnd");if(c)c.scrollIntoView({block:"center"});const r=document.getElementById("rxw");if(r&&r.dataset.fx){r.classList.add("walk");setTimeout(()=>{r.style.left=r.dataset.tx;r.style.top=r.dataset.ty},450);setTimeout(()=>r.classList.remove("walk"),1700)}S.wf=null}
 function closeMap(){S.v="start";save();render();window.scrollTo(0,0)}
 function mapw(){
