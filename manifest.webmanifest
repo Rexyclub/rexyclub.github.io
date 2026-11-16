@@ -1,18 +1,27 @@
 {
-  "name": "Ezi Pizi · Rexy Club",
-  "short_name": "Ezi Pizi",
-  "description": "English for real life · Rexy Club",
+  "id": "./",
+  "name": "Rexy · Ezi Pizi",
+  "short_name": "Rexy",
   "lang": "fa",
   "dir": "rtl",
-  "start_url": "./index.html",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#F7EFE3",
-  "theme_color": "#F7EFE3",
+  "theme_color": "#102C43",
   "icons": [
-    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
   ]
 }
